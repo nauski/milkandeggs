@@ -7,20 +7,6 @@ using namespace std;
 int listanKoko = 50;
 int count = 0;
 
-void luoLista(string arr[], int size){
-
-  while (count < size) {
-      cout << "\nSyötä ostos: \n";
-      std::string temp;
-      cin >> temp;
-      arr[count] = temp;
-      count++;
-
-  //   tulostaLista(arr, count);
-      }
-
-}
-
 void tulostaLista(string arr[], int size){
   std::cout << "\n" << std::endl;
   std::cout << "Listalla: " << std::endl;
@@ -28,6 +14,17 @@ void tulostaLista(string arr[], int size){
   for(int i = 0; i < size; i++){
     std::cout << arr[i]  << std::endl;
   }
+}
+
+void luoLista(string arr[], int size){
+  while (count < size) {
+      cout << "\nSyötä ostos: \n";
+      std::string temp;
+      cin >> temp;
+      arr[count] = temp;
+      count++;
+     tulostaLista(arr, count);
+      }
 }
 
 int main(void)
@@ -47,14 +44,5 @@ int main(void)
  string* hlo3 = new string [listanKoko];
 
 luoLista(hlo1, listanKoko);
- //while (count < stringSize) {
-//     cout << "\nSyötä ostos: \n";
-//     std::string temp;
-//     cin >> temp;
-//     hlo1[count] = temp;
-//     count++;
-//
-//    tulostaLista(hlo1, count);
-//     }
-  //   delete[] s;
+
 }
