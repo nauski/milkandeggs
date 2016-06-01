@@ -1,9 +1,11 @@
-#include<stdio.h>
-#include<iostream>
-#include<cstdlib>
-#include<string>
+#include <stdio.h>
+#include <iostream>
+#include <cstdlib>
+#include <string>
+#include <cstring>
 
 using namespace std;
+
 int listanKoko = 50;
 int count = 0;
 
@@ -18,13 +20,19 @@ void tulostaLista(string arr[], int size){
 
 void luoLista(string arr[], int size){
   while (count < size) {
-      cout << "\nSyötä ostos: \n";
+      std::cout << "\nSyötä ostos: \n";
       std::string temp;
       cin >> temp;
-      arr[count] = temp;
-      count++;
-     tulostaLista(arr, count);
-      }
+      int pit = temp.size();
+      if(pit > 0){
+        arr[count] = temp;
+        count++;
+        tulostaLista(arr, count);
+        std::cout << pit << std::endl;
+      } else {
+        std::cout << "entteriä " << std::endl;
+   }
+    }
 }
 
 int main(void)
@@ -43,6 +51,18 @@ int main(void)
  string* hlo2 = new string [listanKoko];
  string* hlo3 = new string [listanKoko];
 
-luoLista(hlo1, listanKoko);
+ string exit;
+ 
+  while (getline(cin, exit))
+ {
+     if (exit.empty()){
+         break;
+    } else {
+
+      luoLista(hlo1, listanKoko);
+    }
+ }
+
+
 
 }
