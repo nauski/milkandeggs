@@ -13,6 +13,7 @@ vector<string> vhlo3;
 vector<string> yhteiset;
 vector<string> kaikki;
 
+// PRINT INFO
 void tulostaInfo(){
    cout << "=== Solukämppäsovellus ===\n";
    cout << " - Ohjelmaan syötetään kolmen henkilön ostoslistat.\n";
@@ -22,6 +23,7 @@ void tulostaInfo(){
    cout << "   poistu ohjelmasta tyhjällä rivillä. \n" << endl;
 }
 
+// PRINT FORMATTED SHOPPING LIST
 void tulostaLista(vector<string> lista){
 
   cout << "Listalla: " << endl;
@@ -31,6 +33,7 @@ void tulostaLista(vector<string> lista){
     cout << endl;
 }
 
+// ASK FOR ITEMS AND ADD THEM TO LIST
 void luoLista(vector<string> &lista){
   string ostos;
   cout << "Ostos:" << endl;
@@ -45,14 +48,13 @@ void luoLista(vector<string> &lista){
    }
 }
 
+// COMBINE LISTS (USED TO MAKE A LIST CONTAINING ALL OTHER LISTS)
 void yhdistaListat(vector<string> &toinen){
-
   kaikki.insert(kaikki.end(), toinen.begin(), toinen.end());
-
 }
 
+// COPY DUPLICATES FROM PREVIOUSLY COMBINED LIST TO A DIFFERENT LIST
 void teeListaDuplikaateista(vector<string> &kaikki) {
-
   vector<string> tmp = kaikki;
   for (int i = 0; i < tmp.size(); i++) {
       //Position current = tmp.at(i);
@@ -64,6 +66,7 @@ void teeListaDuplikaateista(vector<string> &kaikki) {
   }
 }
 
+// REMOVE DUPLICATES FROM LIST
 template <typename Type>
 void poistaDuplikaatit(vector<Type> &vec) {
   sort(vec.begin(), vec.end());
