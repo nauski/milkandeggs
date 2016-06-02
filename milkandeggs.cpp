@@ -11,7 +11,9 @@ vector<string> vhlo1;
 vector<string> vhlo2;
 vector<string> vhlo3;
 vector<string> yhteiset;
+
 vector<string> kaikki;
+
 
 // PRINT INFO
 void tulostaInfo(){
@@ -57,7 +59,6 @@ void yhdistaListat(vector<string> &toinen){
 void teeListaDuplikaateista(vector<string> &kaikki) {
   vector<string> tmp = kaikki;
   for (int i = 0; i < tmp.size(); i++) {
-      //Position current = tmp.at(i);
       for (int j = i+1; j < tmp.size(); j++) {
            if (tmp[i] == tmp[j]) {
               yhteiset.push_back(tmp[i]);
@@ -71,6 +72,15 @@ template <typename Type>
 void poistaDuplikaatit(vector<Type> &vec) {
   sort(vec.begin(), vec.end());
   vec.erase(unique(vec.begin(), vec.end()), vec.end());
+}
+
+void luoListaUniikeista(vector<string> lista, vector<string> lista2){
+
+  vector<string> henk = yhdistaListat(lista, lista2);
+  poistaDuplikaatit(henk);
+
+  tulostaLista(henk);
+
 }
 
 int main(void)
@@ -102,6 +112,8 @@ tulostaLista(kaikki);
 poistaDuplikaatit(yhteiset);
 cout << "YHTEISET OSTOKSET: \n" << endl;
 tulostaLista(yhteiset);
-cout << "====================== \n" << endl;
-
+cout << "HENKILÖKOHTAISET OSTOKSET \n" << endl;
+luoListaUniikeista(vhlo1, kaikki);
+luoListaUniikeista(vhlo2, kaikki);
+luoListaUniikeista(vhlo3, kaikki);
 }
