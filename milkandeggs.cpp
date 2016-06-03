@@ -74,33 +74,73 @@ void poistaDuplikaatit(vector<Type> &vec) {
   vec.erase(unique(vec.begin(), vec.end()), vec.end());
 }
 
-void luoListaUniikeista(vector<string> lista){
+vector<string> luoListaUniikeista(vector<string> lista){
 
-    vector<string> sortattu1(yhteiset);
-    vector<string> sortattu2(lista);
+    vector<string> sortattu1(lista);
+    vector<string> sortattu2(yhteiset);
 
     sort(sortattu1.begin(),sortattu1.end());
     sort(sortattu2.begin(),sortattu2.end());
 
-    vector<string> eroavaisuudet;
+    sortattu1.erase(unique(sortattu1.begin(), sortattu1.end()), sortattu1.end());
+    sortattu2.erase(unique(sortattu2.begin(), sortattu2.end()), sortattu2.end());
 
+    vector<string> eroavaisuudet;
       set_symmetric_difference(
         sortattu1.begin(),
         sortattu1.end(),
         sortattu2.begin(),
         sortattu2.end(),
         back_inserter(eroavaisuudet));
-tulostaLista(eroavaisuudet);
+//tulostaLista(eroavaisuudet);
 
-//  vector<string> temp;
-//    for (int i = 0; i < yhteiset.size(); i++) {
-//      for (int j = 0; j < lista.size(); j++) {
-//           if (yhteiset[i] != lista[j]) {
-//              temp.push_back(yhteiset[i]);
-//           }
-//      }
-//  }
-//  tulostaLista(temp);
+  return eroavaisuudet;
+
+}
+
+void tulostaUniikitJaKauppavuoro (vector<string> eka, vector<string> toka, vector<string> kolmas){
+
+cout << "Henkilö 1" << endl;
+tulostaLista(eka);
+cout << "Henkilö 2" << endl;
+tulostaLista(toka);
+cout << "Henkilö 3" << endl;
+tulostaLista(kolmas);
+
+  if( eka.size()>=toka.size() && eka.size()>=kolmas.size()) {
+         cout << "Kauppavuorossa: Henkilö 1" <<  endl;
+         tulostaLista(eka);
+         if(toka.size() >= kolmas.size()){
+           cout << "Henkilö 2" << endl;
+           tulostaLista(toka);
+           cout << "Henkilö 3" << endl;
+           tulostaLista(kolmas);
+         } else {
+           cout << "Henkilö 3" << endl;
+           tulostaLista(kolmas);
+           cout << "Henkilö 2" << endl;
+           tulostaLista(toka);
+         }
+
+     } else if  (toka.size()>=kolmas.size() && toka.size()>=kolmas.size()) {
+         cout << "Kauppavuorossa: Henkilö 2" <<  endl;
+         tulostaLista(toka);
+
+         if(toka.size() >= kolmas.size()){
+           cout << "Henkilö 2" << endl;
+           tulostaLista(toka);
+           cout << "Henkilö 3" << endl;
+           tulostaLista(kolmas);
+         } else {
+           cout << "Henkilö 3" << endl;
+           tulostaLista(kolmas);
+           cout << "Henkilö 2" << endl;
+           tulostaLista(toka);
+         }
+    } else {
+     cout << "Kauppavuorossa: Henkilö 3" <<  endl;
+     tulostaLista(kolmas);
+   }
 
 }
 
@@ -134,9 +174,10 @@ poistaDuplikaatit(yhteiset);
 cout << "YHTEISET OSTOKSET: \n" << endl;
 tulostaLista(yhteiset);
 cout << "HENKILÖKOHTAISET OSTOKSET: \n" << endl;
-luoListaUniikeista(vhlo1);
-//uoListaUniikeista(vhlo2);
-//luoListaUniikeista(vhlo3);
+vector<string> eka = luoListaUniikeista(vhlo1);
+vector<string> toka = luoListaUniikeista(vhlo2);
+vector<string> kolmas = luoListaUniikeista(vhlo3);
 
+tulostaUniikitJaKauppavuoro(eka, toka, kolmas);
 
 }
