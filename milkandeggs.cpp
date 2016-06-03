@@ -74,12 +74,33 @@ void poistaDuplikaatit(vector<Type> &vec) {
   vec.erase(unique(vec.begin(), vec.end()), vec.end());
 }
 
-void luoListaUniikeista(vector<string> lista, vector<string> lista2){
+void luoListaUniikeista(vector<string> lista){
 
-  vector<string> henk = yhdistaListat(lista, lista2);
-  poistaDuplikaatit(henk);
+    vector<string> sortattu1(yhteiset);
+    vector<string> sortattu2(lista);
 
-  tulostaLista(henk);
+    sort(sortattu1.begin(),sortattu1.end());
+    sort(sortattu2.begin(),sortattu2.end());
+
+    vector<string> eroavaisuudet;
+
+      set_symmetric_difference(
+        sortattu1.begin(),
+        sortattu1.end(),
+        sortattu2.begin(),
+        sortattu2.end(),
+        back_inserter(eroavaisuudet));
+tulostaLista(eroavaisuudet);
+
+//  vector<string> temp;
+//    for (int i = 0; i < yhteiset.size(); i++) {
+//      for (int j = 0; j < lista.size(); j++) {
+//           if (yhteiset[i] != lista[j]) {
+//              temp.push_back(yhteiset[i]);
+//           }
+//      }
+//  }
+//  tulostaLista(temp);
 
 }
 
@@ -112,8 +133,10 @@ tulostaLista(kaikki);
 poistaDuplikaatit(yhteiset);
 cout << "YHTEISET OSTOKSET: \n" << endl;
 tulostaLista(yhteiset);
-cout << "HENKILÖKOHTAISET OSTOKSET \n" << endl;
-luoListaUniikeista(vhlo1, kaikki);
-luoListaUniikeista(vhlo2, kaikki);
-luoListaUniikeista(vhlo3, kaikki);
+cout << "HENKILÖKOHTAISET OSTOKSET: \n" << endl;
+luoListaUniikeista(vhlo1);
+//uoListaUniikeista(vhlo2);
+//luoListaUniikeista(vhlo3);
+
+
 }
